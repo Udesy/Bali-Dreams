@@ -6,13 +6,16 @@
   --foreground: #2e1f0a;
 }
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base{
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
 .header h1{
+  line-height: 1;
   @apply text-[200px]
 }
 .img{
@@ -46,6 +49,7 @@ section{
   display: flex;
   flex-direction: column;
   gap: 2;
+  color: #fbf6e6;
 }
 
 .card-marquee{
@@ -59,6 +63,7 @@ section{
 
 .marquee{
   display: flex;
+  color: #2e1f0a;
 }
 
 .marquee h1{
@@ -136,6 +141,11 @@ section{
   transform: translateX(100%);
   display: inline-block;
   will-change: transform;
+}
+
+.footer{
+  font-size: 300px;
+  line-height: 0.6
 }
 
 @media (max-width: 900px){

@@ -1,10 +1,36 @@
 "use client"
-import React from 'react';
+import { useGSAP } from '@gsap/react';
+import React, { useRef } from 'react';
+import { SplitText } from 'gsap/SplitText';
+import gsap from 'gsap';
 
 const Hero = () => {
+  const containerRef = useRef(null)
+  useGSAP(() => {
+    gsap.registerPlugin(SplitText);
+
+    const title = containerRef.current.querySelector("h1");
+
+    const split = new SplitText(title, {
+      type: "chars,words,lines",
+      charsClass: "char",
+      wordsClass: "word",
+      linesClass: "line",
+      mask: 'lines'
+    });
+
+    gsap.from(split.chars, {
+      duration: 1,
+      y: 200,
+      stagger: 0.06,
+      ease: "power2.inOut",
+    })
+  }, {
+    scope: containerRef
+  })
   return (
-    <div className="relative h-screen flex items-center justify-center">
-      <div className="absolute top-0 left-0 flex flex-row justify-between w-full text-xl px-5 py-5">
+    <div className="relative h-screen flex items-center justify-center" ref={containerRef}>
+      <div className="absolute top-0 left-0 flex flex-row justify-between w-full text-xl px-10 py-5">
         <div><h2>A Experience of Life</h2></div>
         <div>
           <svg
@@ -26,8 +52,8 @@ const Hero = () => {
       </div> 
 
       <div className='flex flex-col justify-center items-center header'>
-        <h1 className=''>Bali Dreams</h1>
-        <p className='max-w-[500px] text-center'>Life can be tough and unpredictable, but visiting Bali offers a chance to escape the struggles and experience something truly uplifting. In Bali, you don’t just see the world—you feel it deeply.</p>
+        <h1 className='heading'>Bali Dreams</h1>
+        <p className='max-w-[700px] text-center'>Life can be tough and unpredictable, but visiting Bali offers a chance to escape the struggles and experience something truly uplifting. In Bali, you don’t just see the world—you feel it deeply.</p>
       </div>
     </div>
   );
